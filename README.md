@@ -1,2 +1,14 @@
-# Autonomous-Mobile-Robot
-University project building and coding a autonomous Robot car 
+Autonomous Mobile Robot: Multi-Modal Navigation & Path Planning🎯 OverviewThis repository contains the firmware for a 4-wheeled autonomous robot capable of complex navigation in dynamic environments. The system implements a modular state-machine architecture to switch between various robotic behaviors, ranging from simple reactive obstacle avoidance to complex path-planning algorithms like the Bug Algorithm.🧠 Navigation Logic (The "Bug" Algorithm)The highlight of this project is Mode 4: The Bug Algorithm. This algorithm allows the robot to navigate towards a goal while handling unexpected obstacles by transitioning through two primary states:State 0 (Goal Seeking): The robot moves forward towards a predefined target.State 1 (Wall Following): Upon detecting an obstacle within 20cm, the robot triggers an audible alert and switches to a wall-following behavior to "circumnavigate" the object.Recovery: Once the front path is clear for a set duration, the robot resets its state to continue towards the goal.🛠️ Hardware SpecificationsComponentSpecification / PinFunctionMicrocontrollerArduinoCentral Logic Processing.Distance SensorHC-SR04 UltrasonicReal-time obstacle detection (Trig: 10, Echo: 2).ActuatorMicro Servo (SG90)Provides 180° environmental scanning capability.Line Sensor5-Channel IR ArrayHigh-precision surface tracking (A0-A4).Drive SystemL298N / DC MotorsDifferential drive with PWM speed control.🔬 Perception & Sensor CalibrationDuring development, I identified a critical limitation with standard Infrared (IR) sensors, which often failed to detect objects at certain angles. I resolved this by transitioning to an Ultrasonic-first perception model.Sensor Accuracy AnalysisI performed rigorous testing to map "Actual Distance" vs. "Sensor Reading" to ensure navigation reliability.[Insert your Graph Image here from Portfolio Page 8]💻 Code ArchitectureThe software is organized into functional blocks to ensure scalability:obstacleAvoidance(): Implements "Scan-Compare-Turn" logic. If the front path is blocked, the robot scans 30° right and 150° left to find the optimal path.wallFollowing(): Uses distance thresholds (25cm) and tolerances to maintain a steady course parallel to a wall.lineFollowing(): Utilizes a 5-sensor array to handle curves, sharp turns, and intersections.Featured Snippet: State SwitchingC++void bugAlgorithm() {
+  if (bugState == 0) {
+    if (frontDistance < OBSTACLE_STOP_DISTANCE) {
+      bugState = 1; // Transition to Wall Follow
+      buzz();
+      stopMotors();
+    } else {
+      moveForward(NORMAL_SPEED);
+    }
+  } else {
+    wallFollowing(); // Perimeter navigation
+  }
+}
+🚀 Future WorkSim-to-Real Transfer: Integrating the logic with a ROS2/Gazebo environment for virtual training.Vision-Based Navigation: Replacing the ultrasonic sensor with a Raspberry Pi Camera for deep-learning-based perception.Author: Iyaaz AhmedEducation: BEng Robotics Engineering, Queen Mary University of London 
