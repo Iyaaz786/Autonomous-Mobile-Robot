@@ -29,7 +29,7 @@ During development, I identified a critical limitation with standard Infrared (I
 ### **Sensor Accuracy Analysis**
 I performed rigorous testing to map "Actual Distance" vs. "Sensor Reading" to ensure navigation reliability.
 
-*(Insert your Graph Image here from Portfolio Page 8)*
+![Sensor Calibration Graph](assets/sensorGraph.png)
 
 ---
 
