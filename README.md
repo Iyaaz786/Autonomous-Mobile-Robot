@@ -3,6 +3,8 @@
 ## 🎯 Overview
 This repository contains the firmware for a 4-wheeled autonomous robot capable of complex navigation in dynamic environments .The system implements a modular state-machine architecture to switch between various robotic behaviors, ranging from simple reactive obstacle avoidance to complex path-planning algorithms like the **Bug Algorithm**.
 
+![Robot Car Portfolio](assets/robotCarPortfolio.png)
+
 ## 🧠 Navigation Logic (The "Bug" Algorithm)
 The highlight of this project is **Mode 4: The Bug Algorithm**. This algorithm allows the robot to navigate towards a goal while handling unexpected obstacles by transitioning through two primary states:
 
